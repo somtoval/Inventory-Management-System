@@ -1,0 +1,22 @@
+Watching for file changes with StatReloader
+Not Found: /auth/login
+"POST /auth/login HTTP/1.1" 404 2913
+Internal Server Error: /api/auth/login
+Traceback (most recent call last):
+  File "C:\Users\user\Envs\env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\user\Envs\env\lib\site-packages\django\utils\deprecation.py", line 131, in __call__
+    response = self.process_response(request, response)
+  File "C:\Users\user\Envs\env\lib\site-packages\django\middleware\common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+  File "C:\Users\user\Envs\env\lib\site-packages\django\middleware\common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to localhost:8000/api/auth/login/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+"POST /api/auth/login HTTP/1.1" 500 72782
+Unauthorized: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 401 183
+"POST /api/auth/login/ HTTP/1.1" 200 706
+"POST /api/categories/ HTTP/1.1" 201 27
+"POST /api/inventory/ HTTP/1.1" 201 163
+"GET /api/inventory/ HTTP/1.1" 200 264
+"GET /api/inventory/ HTTP/1.1" 200 264
