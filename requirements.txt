@@ -2,3 +2,4 @@ Django
 djangorestframework
 drf-yasg
 djangorestframework-simplejwt
+django-filter
