@@ -1,0 +1,4 @@
+Django
+djangorestframework
+drf-yasg
+djangorestframework-simplejwt
