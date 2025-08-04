@@ -130,6 +130,14 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # CORS configuration for development
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'PATCH',
+    'DELETE',
+    'OPTIONS'
+]
 
 import os
 from datetime import timedelta
