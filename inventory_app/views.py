@@ -464,59 +464,59 @@ class LogoutView(APIView):
 
 
 
-# Forecasting
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from .forecast import SalesForecastService
+# # Forecasting
+# from rest_framework.decorators import api_view
+# from rest_framework.response import Response
+# from .forecast import SalesForecastService
 
-@api_view(['POST'])
-@permission_classes([permissions.IsAuthenticated])
-def generate_ai_forecast(request):
-    """
-    Generate AI-powered forecast for a specific item
-    """
-    item_id = request.data.get('item_id')
-    forecast_days = request.data.get('forecast_days', 30)
+# @api_view(['POST'])
+# @permission_classes([permissions.IsAuthenticated])
+# def generate_ai_forecast(request):
+#     """
+#     Generate AI-powered forecast for a specific item
+#     """
+#     item_id = request.data.get('item_id')
+#     forecast_days = request.data.get('forecast_days', 30)
     
-    if not item_id:
-        return Response({'error': 'item_id is required'}, status=400)
+#     if not item_id:
+#         return Response({'error': 'item_id is required'}, status=400)
     
-    service = SalesForecastService()
-    success, message = service.generate_forecast_for_item(item_id, forecast_days)
+#     service = SalesForecastService()
+#     success, message = service.generate_forecast_for_item(item_id, forecast_days)
     
-    if success:
-        # Get the generated forecasts
-        forecasts = SalesForecast.objects.filter(
-            item_id=item_id,
-            forecast_date__gte=timezone.now().date()
-        ).order_by('forecast_date')
+#     if success:
+#         # Get the generated forecasts
+#         forecasts = SalesForecast.objects.filter(
+#             item_id=item_id,
+#             forecast_date__gte=timezone.now().date()
+#         ).order_by('forecast_date')
         
-        serializer = SalesForecastSerializer(forecasts, many=True)
-        return Response({
-            'success': True,
-            'message': message,
-            'forecasts': serializer.data
-        })
-    else:
-        return Response({'error': message}, status=400)
+#         serializer = SalesForecastSerializer(forecasts, many=True)
+#         return Response({
+#             'success': True,
+#             'message': message,
+#             'forecasts': serializer.data
+#         })
+#     else:
+#         return Response({'error': message}, status=400)
 
-@api_view(['POST'])
-@permission_classes([permissions.IsAuthenticated])
-def generate_all_forecasts(request):
-    """
-    Generate AI-powered forecasts for all items
-    """
-    if not request.user.is_manager():
-        return Response({'error': 'Manager access required'}, status=403)
+# @api_view(['POST'])
+# @permission_classes([permissions.IsAuthenticated])
+# def generate_all_forecasts(request):
+#     """
+#     Generate AI-powered forecasts for all items
+#     """
+#     if not request.user.is_manager():
+#         return Response({'error': 'Manager access required'}, status=403)
     
-    forecast_days = request.data.get('forecast_days', 30)
-    min_sales_threshold = request.data.get('min_sales_threshold', 5)
+#     forecast_days = request.data.get('forecast_days', 30)
+#     min_sales_threshold = request.data.get('min_sales_threshold', 5)
     
-    service = SalesForecastService()
-    results = service.generate_forecasts_for_all_items(forecast_days, min_sales_threshold)
+#     service = SalesForecastService()
+#     results = service.generate_forecasts_for_all_items(forecast_days, min_sales_threshold)
     
-    return Response({
-        'success': True,
-        'message': f'Generated forecasts for {len(results)} items',
-        'results': results
-    })
+#     return Response({
+#         'success': True,
+#         'message': f'Generated forecasts for {len(results)} items',
+#         'results': results
+#     })

@@ -64,9 +64,9 @@ urlpatterns = [
     path('forecasts/<int:pk>/', views.SalesForecastDetailView.as_view(), name='forecast-detail'),
     
     # AI Forecast URLs
-    path('forecasts/generate/', views.generate_ai_forecast, name='generate-ai-forecast'),
-    path('forecasts/generate-all/', views.generate_all_forecasts, name='generate-all-forecasts'),
-    
+    # path('forecasts/generate/', views.generate_ai_forecast, name='generate-ai-forecast'),
+    # path('forecasts/generate-all/', views.generate_all_forecasts, name='generate-all-forecasts'),
+
     # =====================
     # Dashboard URLs
     # =====================
