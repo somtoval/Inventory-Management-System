@@ -467,7 +467,7 @@ class LogoutView(APIView):
 # Forecasting
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .forecast_service import SalesForecastService
+from .forecast import SalesForecastService
 
 @api_view(['POST'])
 @permission_classes([permissions.IsAuthenticated])
